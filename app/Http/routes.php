@@ -25,3 +25,17 @@ Route::controllers([
         Route::resource('user', 'UserController');
         Route::resource('main', 'HomeController@main');
  });
+
+
+/*
+ * Ruta para identificar el host donde se esta ejecutando al aplicacion
+ */
+Route::get('host', function() {
+    echo gethostname();
+    $app = new Illuminate\Foundation\Application;
+    $env = $app->detectEnvironment(array(
+        'local' => array('localhost', 'MacBook-Pro-de-Alexander.local', 'localhost', 'ALEX-PC'),
+        'production' => array('pendiente'),
+        ));
+    echo " ___ " . $env;
+});

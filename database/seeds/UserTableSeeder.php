@@ -8,7 +8,7 @@ class UserTableSeeder extends Seeder {
 		DB::table('users')->delete();
 
 		\DB::table('users')->insert(array (
-			'profile' => 'sp_admin',
+			'profile' => 'super_admin',
 			'name' => 'Alexander Londono',
 			'email' => 'admin@admin.com',
 			'enable' => 'si',

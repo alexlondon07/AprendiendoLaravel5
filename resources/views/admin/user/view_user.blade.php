@@ -8,8 +8,8 @@
     <div class="row">
         <div class="main">
             <h2 class="page-header">Usuarios</h2>
+            <h4>{!!$items->total()!!} resultados </h4>
             <div class="controls form-inline">
-
                 <a href="{!! URL::to('/') !!}/admin/user/create" class="btn btn-primary pull-right">Crear Usuario</a>
                 <div class="input-group">
                   {!! Form::open(array('url' => 'admin/users/search', 'id' => 'search_form', 'method'=>'GET', 'class'=>'control-group')) !!}
@@ -54,6 +54,7 @@
                 @endforeach
             </tbody>
         </table>
+        {!! $items->render() !!}
         @else
         No hay datos!
         @endif

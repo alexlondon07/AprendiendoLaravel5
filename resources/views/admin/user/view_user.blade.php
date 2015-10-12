@@ -28,7 +28,7 @@
                     <tr>
                         <th>Acciones</th>
                         <th>Nombre</th>
-                        <th>Email</th>
+                        <th>Usuario</th>
                         <th>Habilitado</th>
                     </tr>
                 </thead>

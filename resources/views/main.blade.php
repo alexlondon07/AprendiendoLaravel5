@@ -13,4 +13,3 @@
 @section('footer_content')
 footer
 @stop
-

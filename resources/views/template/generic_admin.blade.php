@@ -29,12 +29,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Aprendiendo Laravel 5</a>
+                <a class="navbar-brand" href="{{ url('/') }}/admin/main">Aprendiendo Laravel 5</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    @if (Auth::user())
+                    <li><a href="{{URL::to('/')}}/admin/user" title="Usuarios">Usuarios</a></li>
+                    @endif
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">

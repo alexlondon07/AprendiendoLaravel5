@@ -23,4 +23,5 @@ Route::controllers([
 
  Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
         Route::resource('user', 'UserController');
+        Route::resource('main', 'HomeController@main');
  });

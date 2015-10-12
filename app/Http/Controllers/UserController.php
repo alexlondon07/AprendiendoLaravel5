@@ -9,7 +9,6 @@ class UserController extends Controller {
     public function index()
     {
         $items = User::orderBy('name', 'ASC')->paginate(10);
-        //return View::make('admin.user.hola', compact('items'));
         return View::make('admin.user.view_user', compact('items'));
     }
 

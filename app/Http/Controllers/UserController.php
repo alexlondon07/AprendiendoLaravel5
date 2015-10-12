@@ -30,10 +30,13 @@ class UserController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
-		//dd($request->all());
-    	$user = new User($request->all());
-    	$user->save();
-        //return View::make('admin.user.view.user');
+        $user = new User();
+        $user ->name = $request->input('name');
+        $user ->profile = $request->input('profile');
+        $user ->enable = $request->input('enable');
+        $user ->email = $request->input('email');
+        $user ->password = \Hash::make($request->input('password'));
+        $user->save();
     }
 
 }

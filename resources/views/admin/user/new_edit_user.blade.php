@@ -40,7 +40,7 @@
                         <div class="form-group">
                             {!!Form::label('enable', 'Habilitado', array('class' => 'control-label col-md-4'))!!}
                             <div class="col-md-6">
-                                {!! Form::select('enable',array('SI'=>'SI','NO'=>'NO'), null, array('class'=>'form-control')) !!}
+                                {!! Form::select('enable',array('si'=>'si','no'=>'no'), null, array('class'=>'form-control')) !!}
                             </div>
                         </div>
 

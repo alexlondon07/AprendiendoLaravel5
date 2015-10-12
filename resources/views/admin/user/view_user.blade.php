@@ -27,6 +27,7 @@
                 <thead>
                     <tr>
                         <th>Acciones</th>
+                        <th>Item</th>
                         <th>Nombre</th>
                         <th>Usuario</th>
                         <th>Habilitado</th>
@@ -47,6 +48,7 @@
                             </tr>
                         </table>
                     </td>
+                    <td>{!! $item->id !!}</td>
                     <td>{!! $item->name !!}</td>
                     <td>{!! $item->email !!}</td>
                     <td>{!! $item->enable !!}</td>

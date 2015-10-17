@@ -14,10 +14,10 @@
                 <div class="input-group">
                   {!! Form::open(array('url' => 'admin/users/search', 'id' => 'search_form', 'method'=>'GET', 'class'=>'control-group')) !!}
                   <div class="form-group">
-                        <input id="search"  name="search"  type="text" required="true" class="form-control" placeholder="Buscar..." value="@if(isset($search)){{ $search }}@endif" >
+                        <input id="search"  name="search"  type="text" required="true" class="form-control" placeholder="Buscar..." value="@if(isset($search)){!! $search !!}@endif" >
                   </div>
                   <button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                  <a href="{!!URL::to('/')!!}/admin/user" title="Refrescar Usuarios"class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
+                  <a href="{!!URL::to('/')!!}/admin/user" title="Refrescar"class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
                   {!! Form::close() !!}
               </div>
             </div>
@@ -40,7 +40,7 @@
                             <table>
                               <tr>
                                 <td><a title="Detalles" href="{!! URL::to('/') !!}/admin/user/{!! $item->id !!}"><span class="glyphicon glyphicon-eye-open btn btn-default btn-xs"></span></a></td>
-                                <td><a title="Editar" href="{!! URL::to('/') !!}/admin/user/{{ $item->id !!}/edit"><span class="glyphicon glyphicon-edit btn btn-default btn-xs"></span></a></td>
+                                <td><a title="Editar" href="{!! URL::to('/') !!}/admin/user/{!! $item->id !!}/edit"><span class="glyphicon glyphicon-pencil btn btn-default btn-xs"></span></a></td>
                                 <td>{!! Form::open(['action' => ['UserController@destroy', $item->id], 'method' => 'delete', 'style' => 'display: inline;']) !!}
                                     <button title="Eliminar" type="submit" onclick="return Util.confirmDelete(this);" class="glyphicon glyphicon-trash btn btn-default btn-xs"></button>
                                     {!! Form::close() !!}

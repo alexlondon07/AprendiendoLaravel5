@@ -2,7 +2,7 @@
                         <div class="form-group">
                             {!!Form::label('name', 'Nombre', array('class' => 'control-label col-md-4'))!!}
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                {!!Form::text('name',null, array('class' => 'form-control'))!!}
                             </div>
                         </div>
 
@@ -22,13 +22,13 @@
                         <div class="form-group">
                             {!!Form::label('email', 'Email', array('class' => 'control-label col-md-4'))!!}
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                {!!Form::text('email',null, array('class' => 'form-control'))!!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             {!!Form::label('password', 'Contraseña', array('class' => 'control-label col-md-4'))!!}
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
+                                    {!!Form::password('password', array('class' => 'form-control'))!!}
                             </div>
                         </div>

@@ -38,6 +38,20 @@ class UserController extends Controller {
         return View::make('admin.user.new_edit_user', compact('user', 'show'));
     }
 
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id) {
+        $user = User::find($id);
+        $user->fill(\Request::all());
+        $user->save();
+        return Redirect::to('admin/user')->with('success_message', 'Registro guardado correctamente!');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -67,13 +81,9 @@ class UserController extends Controller {
      *
      * @return Response
      */
-    public function store(Request $request) {
+    public function store() {
         $user = new User();
-        $user ->name = $request->input('name');
-        $user ->profile = $request->input('profile');
-        $user ->enable = $request->input('enable');
-        $user ->email = $request->input('email');
-        $user ->password = \Hash::make($request->input('password'));
+        $user->fill(\Request::all());
         $user->save();
         return Redirect::to('admin/user')->with('success_message', 'Registro guardado correctamente!');
     }

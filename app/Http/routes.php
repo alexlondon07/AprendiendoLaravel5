@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
+//Route::get('/', 'WelcomeController@index');
+Route::get('/', 'HomeController@index');
+Route::get('home', 'WelcomeController@index');
 Route::get('login', 'HomeController@index');
 
 Route::controllers([
@@ -20,8 +21,7 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-
- Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
+ Route::group(array('prefix' => 'admin', 'middleware' => 'auth'), function() {
         Route::resource('user', 'UserController');
         Route::get('users/search', 'UserController@search');
         Route::resource('main', 'HomeController@main');

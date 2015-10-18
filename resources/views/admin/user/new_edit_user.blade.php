@@ -13,16 +13,10 @@
                     <h3 class="panel-title">@if($user->id) Editar @else Crear @endif</h3>
                 </div>
                 <div class="panel-body">
-                    @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+
+                    {{-- Mensajes de validaciones del formulario --}}
+                    @include ('admin.alert.messages-validations')
+                    {{-- Fin Mensajes de validaciones del formulario --}}
 
                     @if($user->id)
                       {!! Form::model($user, ['id' => 'form_user', 'route' => ['admin.user.update', $user->id], 'method' => 'put', 'role'=>'form', 'class'=>'form-horizontal']) !!}
@@ -33,9 +27,11 @@
 
                     {{--Se valida que si lleguen datos correctos--}}
                     @if (!empty($user))
+
                         {{-- Campos del formulario --}}
                         @include ('admin.user.partials.fields')
                         {{-- Fin Campos del formulario --}}
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -82,7 +78,7 @@
                 <div class="form-group">
                     {!! Form::label('profile', 'Perfil', array('class' => 'control-label col-sm-2'))!!}
                     <div class="col-sm-4">
-                        {!!  Form::select('profile',array('operario'=>'Operario','supervisor'=>'Supervisor','super_admin'=>'Administrador'), $user->profile, array('class'=>'form-control','disabled' => 'true')) !!}
+                        {!!  Form::select('profile',array('colaborador'=>'Colaborador','usuario'=>'Usuario','super_admin'=>'Administrador'), $user->profile, array('class'=>'form-control','disabled' => 'true')) !!}
                     </div>
                 </div>
                 <div class="form-group">

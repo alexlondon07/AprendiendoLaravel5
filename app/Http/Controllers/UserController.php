@@ -1,5 +1,4 @@
 <?php namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use View;
 use App\User;
@@ -33,7 +32,7 @@ class UserController extends Controller {
      * @return Response
      */
     public function edit($id) {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $show = false;
         return View::make('admin.user.new_edit_user', compact('user', 'show'));
     }
@@ -46,6 +45,22 @@ class UserController extends Controller {
      * @return Response
      */
     public function update($id) {
+        $data=\Request::all();
+
+        // se define la validacion de los campos
+        $rules = array(
+            'name' => 'required|max:60',
+            'email'  => 'required|email|unique:users,email,' . $id,
+            'profile' => 'in:colaborador,usuario,super_admin',
+            'enable'=>'in:si,no');
+
+        // Se validan los datos ingresados segun las reglas definidas
+        $v = \Validator::make($data, $rules);
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+
         $user = User::find($id);
         $user->fill(\Request::all());
         $user->save();
@@ -82,9 +97,22 @@ class UserController extends Controller {
      * @return Response
      */
     public function store() {
-        $user = new User();
-        $user->fill(\Request::all());
-        $user->save();
+        $data=\Request::all();
+
+        // se define la validacion de los campos
+        $rules = array(
+            'name' => 'required|max:60',
+            'email' => 'email|unique:users',
+            'profile' => 'in:colaborador,usuario,super_admin',
+            'enable'=>'in:si,no');
+
+        // Se validan los datos ingresados segun las reglas definidas
+        $v = \Validator::make($data, $rules);
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+        $user = User::create($data);
         return Redirect::to('admin/user')->with('success_message', 'Registro guardado correctamente!');
     }
 

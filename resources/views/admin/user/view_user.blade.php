@@ -32,9 +32,10 @@
                 <thead>
                     <tr>
                         <th>Acciones</th>
-                        <th>Item</th>
+                        <th>#</th>
                         <th>Nombre</th>
                         <th>Usuario</th>
+                        <th>Prefil</th>
                         <th>Habilitado</th>
                     </tr>
                 </thead>
@@ -56,6 +57,7 @@
                     <td>{!! $item->id !!}</td>
                     <td>{!! $item->name !!}</td>
                     <td>{!! $item->email !!}</td>
+                    <td>{!! $item->profile !!}</td>
                     <td>{!! $item->enable !!}</td>
                 </tr>
                 @endforeach

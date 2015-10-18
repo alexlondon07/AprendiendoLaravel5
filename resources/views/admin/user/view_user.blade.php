@@ -23,11 +23,11 @@
             </div>
           <div class="table-responsive">
             @if (count($items) > 0)
-            
+
             <!--Mensajes-->
                     @include('admin.alert.messages-success')
             <!--Fin Mensajes-->
-            
+
             <table class="table table-striped">
                 <thead>
                     <tr>

@@ -64,7 +64,7 @@ class UserController extends Controller {
         $user = User::find($id);
         $user->fill(\Request::all());
         $user->save();
-        return Redirect::to('admin/user')->with('success_message', 'Registro guardado correctamente!');
+        return Redirect::to('admin/user')->with('success_message', 'Registro actualizado.');
     }
 
     /**
@@ -88,7 +88,7 @@ class UserController extends Controller {
     public function destroy($id) {
         $user = User::find($id);
         $user->delete();
-        return Redirect::to('admin/user')->with('success_message', 'El registro ha sido borrado correctamente.')->withInput();
+        return Redirect::to('admin/user')->with('success_message', 'El registro ha sido borrado.')->withInput();
     }
 
     /**
@@ -113,7 +113,7 @@ class UserController extends Controller {
             return redirect()->back()->withErrors($v->errors());
         }
         $user = User::create($data);
-        return Redirect::to('admin/user')->with('success_message', 'Registro guardado correctamente!');
+        return Redirect::to('admin/user')->with('success_message', 'Registro guardado!');
     }
 
 

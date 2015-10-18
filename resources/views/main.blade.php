@@ -6,10 +6,14 @@
 @section('body_content')
 
 <div align="center">
-    <h1>Bienvenido al sistema</h1>
+	<div class="jumbotron">
+		<h1>Bienvenido al sistema</h1>
+		<p>...</p>
+	</div>
 </div>
 @stop
 
 @section('footer_content')
 footer
 @stop
+

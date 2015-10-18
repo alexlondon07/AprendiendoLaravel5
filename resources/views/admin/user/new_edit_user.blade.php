@@ -52,50 +52,50 @@
     </div>
 </div>
 @else
-<!-- Contenido de la visualizacion del item -->
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <!-- Contenido de la visualizacion del item -->
-        <div class="panel panel-default">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Detalles</h3>
             </div>
-            <div class="panel-body">
-                {!! Form::open(array('role'=>'form', 'class'=>'form-horizontal'))!!}
-                @if (!empty($user))
-                <div class="form-group">
-                    {!!Form::label('name', 'Nombre', array('class' => 'control-label col-sm-2'))!!}
-                    <div class="col-sm-4">
-                        {!! Form::label('name',$user->name, array('class' => 'form-control'))!!}
+                <div class="panel-body">
+                    {!! Form::open(array('role'=>'form', 'class'=>'form-horizontal'))!!}
+                    @if (!empty($user))
+                    <div class="form-group">
+                        {!!Form::label('name', 'Nombre', array('class' => 'control-label col-sm-2'))!!}
+                        <div class="col-sm-4">
+                            {!! Form::label('name',$user->name, array('class' => 'form-control'))!!}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('email', 'Usuario', array('class' => 'control-label col-sm-2'))!!}
-                    <div class="col-sm-4">
-                        {!! Form::label('email',$user->email, array('class' => 'form-control'))!!}
+                    <div class="form-group">
+                        {!! Form::label('email', 'Usuario', array('class' => 'control-label col-sm-2'))!!}
+                        <div class="col-sm-4">
+                            {!! Form::label('email',$user->email, array('class' => 'form-control'))!!}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('profile', 'Perfil', array('class' => 'control-label col-sm-2'))!!}
-                    <div class="col-sm-4">
-                        {!!  Form::select('profile',array('colaborador'=>'Colaborador','usuario'=>'Usuario','super_admin'=>'Administrador'), $user->profile, array('class'=>'form-control','disabled' => 'true')) !!}
+                    <div class="form-group">
+                        {!! Form::label('profile', 'Perfil', array('class' => 'control-label col-sm-2'))!!}
+                        <div class="col-sm-4">
+                            {!!  Form::select('profile',array('colaborador'=>'Colaborador','usuario'=>'Usuario','super_admin'=>'Administrador'), $user->profile, array('class'=>'form-control','disabled' => 'true')) !!}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('enable', 'Habilitado', array('class' => 'control-label col-sm-2'))!!}
-                    <div class="col-sm-4">
-                        {!!  Form::select('enable',array('si'=>'si','no'=>'no'), $user->enable, array('class'=>'form-control','disabled' => 'true')) !!}
+                    <div class="form-group">
+                        {!! Form::label('enable', 'Habilitado', array('class' => 'control-label col-sm-2'))!!}
+                        <div class="col-sm-4">
+                            {!!  Form::select('enable',array('si'=>'si','no'=>'no'), $user->enable, array('class'=>'form-control','disabled' => 'true')) !!}
+                        </div>
                     </div>
-                </div>
-                @else
-                <p class="">No existe información para éste usuario</p>
-                @endif
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-4">
-                        <a href="{{URL::to('/')}}/admin/user" class="btn btn-info">Volver</a>
+                    @else
+                    <p class="">No existe información para éste usuario</p>
+                    @endif
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-4">
+                            <a href="{{URL::to('/')}}/admin/user" class="btn btn-info">Volver</a>
+                        </div>
                     </div>
+                    {!! Form::close() !!}
                 </div>
-                {!! Form::close() !!}
             </div>
         </div>
     </div>

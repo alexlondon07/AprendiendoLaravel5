@@ -60,32 +60,13 @@
                 <h3 class="panel-title">Detalles</h3>
             </div>
                 <div class="panel-body">
-                    {!! Form::open(array('role'=>'form', 'class'=>'form-horizontal'))!!}
+                    {!! Form::model($user, ['id' => 'form_user',  'role'=>'form', 'class'=>'form-horizontal']) !!}
                     @if (!empty($user))
-                    <div class="form-group">
-                        {!!Form::label('name', 'Nombre', array('class' => 'control-label col-sm-2'))!!}
-                        <div class="col-sm-4">
-                            {!! Form::label('name',$user->name, array('class' => 'form-control'))!!}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('email', 'Usuario', array('class' => 'control-label col-sm-2'))!!}
-                        <div class="col-sm-4">
-                            {!! Form::label('email',$user->email, array('class' => 'form-control'))!!}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('profile', 'Perfil', array('class' => 'control-label col-sm-2'))!!}
-                        <div class="col-sm-4">
-                            {!!  Form::select('profile',array('colaborador'=>'Colaborador','usuario'=>'Usuario','super_admin'=>'Administrador'), $user->profile, array('class'=>'form-control','disabled' => 'true')) !!}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('enable', 'Habilitado', array('class' => 'control-label col-sm-2'))!!}
-                        <div class="col-sm-4">
-                            {!!  Form::select('enable',array('si'=>'si','no'=>'no'), $user->enable, array('class'=>'form-control','disabled' => 'true')) !!}
-                        </div>
-                    </div>
+
+                        {{-- Campos del formulario --}}
+                        @include ('admin.user.partials.fields')
+                        {{-- Fin Campos del formulario --}}
+
                     @else
                     <p class="">No existe información para éste usuario</p>
                     @endif

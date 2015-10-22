@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Redirect;
+use  Illuminate\Support\Facades\Request;
 use View;
 use App\User;
 
@@ -45,26 +46,15 @@ class UserController extends Controller {
      * @return Response
      */
     public function update($id) {
-        $data=\Request::all();
-
-        // se define la validacion de los campos
-        $rules = array(
-            'name' => 'required|max:60',
-            'email'  => 'required|email|unique:users,email,' . $id,
-            'profile' => 'in:colaborador,usuario,super_admin',
-            'enable'=>'in:si,no');
-
-        // Se validan los datos ingresados segun las reglas definidas
-        $v = \Validator::make($data, $rules);
-        if ($v->fails())
-        {
-            return redirect()->back()->withErrors($v->errors());
-        }
-
         $user = User::find($id);
-        $user->fill(\Request::all());
-        $user->save();
-        return Redirect::to('admin/user')->with('success_message', 'Registro actualizado.');
+        $data= Request::all();
+        if ($user->isValid($data)){
+            $user->fill($data);
+            $user->save();
+            return Redirect::to('admin/user')->with('success_message', 'Registro actualizado.');
+        }else{
+            return Redirect::back()->withInput()->withErrors($user->errors);
+        }
     }
 
     /**
@@ -97,23 +87,15 @@ class UserController extends Controller {
      * @return Response
      */
     public function store() {
-        $data=\Request::all();
-
-        // se define la validacion de los campos
-        $rules = array(
-            'name' => 'required|max:60',
-            'email' => 'email|unique:users',
-            'profile' => 'in:colaborador,usuario,super_admin',
-            'enable'=>'in:si,no');
-
-        // Se validan los datos ingresados segun las reglas definidas
-        $v = \Validator::make($data, $rules);
-        if ($v->fails())
-        {
-            return redirect()->back()->withErrors($v->errors());
+        $user = new User;
+        $data = Request::all();
+        if ($user->isValidStore($data)){
+            $user->fill($data);
+            $user->save();
+            return Redirect::to('admin/user')->with('success_message', 'Registro guardado!');
+        }else{
+            return Redirect::back()->withInput()->withErrors($user->errors);
         }
-        $user = User::create($data);
-        return Redirect::to('admin/user')->with('success_message', 'Registro guardado!');
     }
 
 
@@ -147,7 +129,7 @@ class UserController extends Controller {
                     }
                 }
             })
-            //->whereNull('deleted_at')
+            ->whereNull('deleted_at')
             ->orderBy('name', 'ASC')
             ->paginate(10);
             return View::make('admin.user.view_user', compact('items', 'search'));

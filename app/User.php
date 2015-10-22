@@ -41,4 +41,41 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		}
 	}
 
+	public $errors;
+    public function isValid($data)
+    {
+        // se define la validacion de los campos
+        $rules = array(
+            'name' => 'required|max:60',
+            'email'  => 'required|email|unique:users,email,' . $this->attributes['id'],
+            'profile' => 'in:colaborador,usuario,super_admin',
+            'enable'=>'in:si,no');
+         // Se validan los datos ingresados segun las reglas definidas
+        $validator = \Validator::make($data, $rules);
+        if ($validator->passes())
+        {
+            return true;
+        }
+        $this->errors = $validator->errors();
+        return false;
+    }
+    
+    public function isValidStore($data)
+    {
+        // se define la validacion de los campos
+        $rules = array(
+            'name' => 'required|max:60',
+            'email'  => 'required|email|unique:users,email,',
+            'profile' => 'in:colaborador,usuario,super_admin',
+            'enable'=>'in:si,no');
+         // Se validan los datos ingresados segun las reglas definidas
+        $validator = \Validator::make($data, $rules);
+        if ($validator->passes())
+        {
+            return true;
+        }
+        $this->errors = $validator->errors();
+        return false;
+    }
+
 }

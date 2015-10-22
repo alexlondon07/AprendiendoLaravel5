@@ -4,7 +4,7 @@
 @stop
 
 @section('body_content')
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="main">
             <h2 class="page-header">Usuarios</h2>
@@ -30,7 +30,7 @@
 
             <table class="table table-striped">
             @if($items->isEmpty())
-                <div class="well text-center">No News found.</div>
+                <div class="well text-center">No se encontraron registros</div>
             @else
                 <thead>
                     <tr>

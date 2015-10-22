@@ -81,7 +81,6 @@
         </div>
     </div>
 </div>
-</div>
 @endif
 @stop
 @section('javascript_content')

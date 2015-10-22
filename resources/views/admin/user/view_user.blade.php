@@ -29,6 +29,9 @@
             <!--Fin Mensajes-->
 
             <table class="table table-striped">
+            @if($items->isEmpty())
+                <div class="well text-center">No News found.</div>
+            @else
                 <thead>
                     <tr>
                         <th>Acciones</th>
@@ -62,6 +65,7 @@
                 </tr>
                 @endforeach
             </tbody>
+            @endif
         </table>
         {!! $items->render() !!}
         @else

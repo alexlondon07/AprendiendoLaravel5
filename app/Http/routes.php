@@ -40,3 +40,10 @@ Route::get('host', function() {
         ));
     echo " ___ " . $env;
 });
+
+Route::resource('news', 'NewsController');
+
+Route::get('news/{id}/delete', [
+    'as' => 'news.delete',
+    'uses' => 'NewsController@destroy',
+]);

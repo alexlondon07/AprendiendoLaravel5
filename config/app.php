@@ -137,6 +137,13 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 		 'Collective\Html\HtmlServiceProvider', 
 
+		/**
+		*Provider para  utilizar librerias  laravel-api-generator.
+		*/
+		'Illuminate\Html\HtmlServiceProvider',
+		'Laracasts\Flash\FlashServiceProvider',
+		'Mitul\Generator\GeneratorServiceProvider',
+
 		/*
 		 * Application Service Providers...
 		 */
@@ -195,6 +202,13 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form' => 'Collective\Html\FormFacade',
 		'Html' => 'Collective\Html\HtmlFacade', 
+
+		/**
+		 *Alias para  utilizar librerias  laravel-api-generator. 
+		 */
+		'Form'  => 'Illuminate\Html\FormFacade',
+		'HTML'  => 'Illuminate\Html\HtmlFacade',
+		'Flash' => 'Laracasts\Flash\Flash'
 
 	],
 

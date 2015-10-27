@@ -1,8 +1,11 @@
 <?php namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Redirect;
-use  Illuminate\Support\Facades\Request;
-use View;
 use App\User;
+use View;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\EditUserRequest;
 
 class UserController extends Controller {
 
@@ -45,16 +48,11 @@ class UserController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function update($id) {
-        $user = User::find($id);
-        $data= Request::all();
-        if ($user->isValid($data)){
-            $user->fill($data);
-            $user->save();
-            return Redirect::to('admin/user')->with('success_message', 'Registro actualizado.');
-        }else{
-            return Redirect::back()->withInput()->withErrors($user->errors);
-        }
+    public function update(EditUserRequest $request, $id) {
+        $user = User::findOrFail($id);
+        $user->fill($request->all());
+        $user->save();
+        return Redirect::to('admin/user')->with('success_message', 'Registro actualizado.');
     }
 
     /**
@@ -86,16 +84,9 @@ class UserController extends Controller {
      *
      * @return Response
      */
-    public function store() {
-        $user = new User;
-        $data = Request::all();
-        if ($user->isValidStore($data)){
-            $user->fill($data);
-            $user->save();
-            return Redirect::to('admin/user')->with('success_message', 'Registro guardado!');
-        }else{
-            return Redirect::back()->withInput()->withErrors($user->errors);
-        }
+    public function store(CreateUserRequest $request) {
+        $user = User::create($request->all());
+        return Redirect::to('admin/user')->with('success_message', 'Registro guardado!');
     }
 
 

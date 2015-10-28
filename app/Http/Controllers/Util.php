@@ -1,11 +1,11 @@
-<?php
+<?php namespace App\Http\Controllers;
 
 /**
  * Clase que contiene varios metodos utiles
  * @author Camilo Garzon Calle
  * @version 1.0
  */
-class Util {
+class Util extends Controller {
 
     /**
      *  Version de la aplicacion

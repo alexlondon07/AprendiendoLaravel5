@@ -1,5 +1,11 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
+                            {!!Form::label('file', 'Imagen', array('class' => 'control-label col-md-4'))!!}
+                                <div class="col-md-6">
+                                <input type="file" name="file" accept="image/*"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             {!!Form::label('name', 'Nombre', array('class' => 'control-label col-md-4'))!!}
                             <div class="col-md-6">
                                 {!!Form::text('name',null, array('class' => 'form-control'))!!}

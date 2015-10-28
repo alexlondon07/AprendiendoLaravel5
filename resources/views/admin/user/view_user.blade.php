@@ -40,6 +40,7 @@
                             <th>Usuario</th>
                             <th>Prefil</th>
                             <th>Habilitado</th>
+                            <th>Imagen</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,6 +63,8 @@
                             <td>{!! $item->email !!}</td>
                             <td>{!! $item->profile !!}</td>
                             <td>{!! $item->enable !!}</td>
+                            <td>{!! ($item->attachment) !!}</td>
+                            <td>
                         </tr>
                         @endforeach
                     </tbody>

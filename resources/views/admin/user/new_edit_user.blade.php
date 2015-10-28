@@ -22,7 +22,7 @@
                     {!! Form::model($user, ['id' => 'form_user', 'route' => ['admin.user.update', $user->id], 'method' => 'put', 'role'=>'form', 'class'=>'form-horizontal']) !!}
                     {!! Form::hidden('email_old', $user->email, array('id'=>'email_old'))!!}
                     @else
-                    {!!Form::model($user, ['id' => 'form_user', 'route' => 'admin.user.store', 'role'=>'form', 'class'=>'form-horizontal']) !!}
+                    {!!Form::model($user, ['id' => 'form_user', 'route' => 'admin.user.store', 'role'=>'form', 'class'=>'form-horizontal', 'enctype'=>'multipart/form-data']) !!}
                     @endif
 
                     {{--Se valida que si lleguen datos correctos--}}

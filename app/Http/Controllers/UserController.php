@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 use App\User;
+use App\Attachment;
 use View;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
@@ -86,6 +87,16 @@ class UserController extends Controller {
      */
     public function store(CreateUserRequest $request) {
         $user = User::create($request->all());
+        //Ingresamos la imagen relacionada
+        if (\Input::hasFile('file')) {
+            $f = \Input::file('file');
+            if ($f) {
+                $att = new Attachment;
+                $att->user_id = $user->id;
+                $r = array();
+                $r = AttachmentController::uploadAttachment($f, $att);
+            }
+        }
         return Redirect::to('admin/user')->with('success_message', 'Registro guardado!');
     }
 

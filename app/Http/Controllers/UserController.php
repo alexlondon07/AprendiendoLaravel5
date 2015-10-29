@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\EditUserRequest;
+//use App\Http\Controllers\AttachmentController;
 
 class UserController extends Controller {
 
@@ -53,6 +54,18 @@ class UserController extends Controller {
         $user = User::findOrFail($id);
         $user->fill($request->all());
         $user->save();
+        //Ingresamos la imagen seleccionada nuevamente
+        if (\Input::hasFile('file')) {
+            //Eliminamos la imagen anterior
+            AttachmentController::destroyAllBy('user_id', $user->id);
+            $f = \Input::file('file');
+            if ($f) {
+                $att = new Attachment;
+                $att->user_id = $user->id;
+                $r = array();
+                $r = AttachmentController::uploadAttachment($f, $att);
+            }
+        }
         return Redirect::to('admin/user')->with('success_message', 'Registro actualizado.');
     }
 
@@ -77,6 +90,8 @@ class UserController extends Controller {
     public function destroy($id) {
         $user = User::find($id);
         $user->delete();
+        //Eliminamos imagen asociada de usuario
+        AttachmentController::destroyAllBy('user_id', $user->id);
         return Redirect::to('admin/user')->with('success_message', 'El registro ha sido borrado.')->withInput();
     }
 

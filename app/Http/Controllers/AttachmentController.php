@@ -1,10 +1,8 @@
 <?php namespace App\Http\Controllers;
 use App\Attachment;
 use View;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Util;
+use File;
 
 class AttachmentController extends Controller {
 

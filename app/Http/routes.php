@@ -21,11 +21,21 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+/*
+ * Rutas para las vistas de administracion de nuestra aplicacion
+ */
  Route::group(array('prefix' => 'admin', 'middleware' => 'auth'), function() {
         Route::resource('user', 'UserController');
         Route::get('users/search', 'UserController@search');
         Route::resource('main', 'HomeController@main');
  });
+
+
+Route::get('attachment/get/{action}/{id}/{key}', [
+    'uses' => 'AttachmentController@getAttachment'
+]);
+//Route::get('attachment/get/{action}/{id}/{key}', array('uses' => 'AttachmentController@getAttachment'));
+
 
 
 /*

@@ -60,10 +60,19 @@
                             </td>
                             <td>{!! $item->id !!}</td>
                             <td>{!! $item->name !!}</td>
-                            <td>{!! $item->email !!}</td>
+                             <td>{!! $item->email !!}</td>
                             <td>{!! $item->profile !!}</td>
                             <td>{!! $item->enable !!}</td>
                             <td>{!! ($item->attachment) !!}</td>
+ {{--                            <td>
+                                @if(count($item->attachment) > 0)
+                                <a href="{{UserController::getAttachmentURL($item->attachment[0]->id, 'download')}}" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt "></span>&nbsp;&nbsp;Descargar
+                                </a><br>
+                                <a href="" target="_blank" >
+                                    <img src="" style="max-height: 50px"/>
+                                </a>
+                                @endif
+                            </td>  --}}
                             <td>
                         </tr>
                         @endforeach

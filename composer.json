@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"name": "laravel/laravel",
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
@@ -44,4 +45,15 @@
 	"config": {
 		"preferred-install": "dist"
 	}
+=======
+  "require" : {
+    "silex/silex": "~1.3",
+    "monolog/monolog": "~1.7",
+    "twig/twig": "^1.19",
+    "symfony/twig-bridge": "^2.7"
+  },
+  "require-dev": {
+    "heroku/heroku-buildpack-php": "*"
+  }
+>>>>>>> b6e3898f96072b37275824d623d2e89243d7d540
 }

@@ -3,6 +3,7 @@ use App\Attachment;
 use View;
 use App\Http\Controllers\Util;
 use File;
+use Response;
 
 class AttachmentController extends Controller {
 
@@ -265,7 +266,7 @@ class AttachmentController extends Controller {
      */
     public static function getAttachmentURL($id, $action = 'view') {
         $attachment = Attachment::find($id);
-
+        //$attachment = \DB::table('attachment')->where('user_id', $id)->get();
         $file_url = '';
         if ($attachment) {
             $file_url = public_path() . "/attachment/get/" . $action . "/" . $attachment->id . "/" . MD5($attachment->id . MD5('lorapp'));

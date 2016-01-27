@@ -12,6 +12,7 @@ use App\Http\Requests\EditUserRequest;
 class UserController extends Controller {
 
 
+
     public function index()
     {
         $items = User::paginate();
@@ -91,7 +92,7 @@ class UserController extends Controller {
         $user = User::find($id);
         $user->delete();
         //Eliminamos imagen asociada de usuario
-        AttachmentController::destroyAllBy('user_id', $user->id);
+        AttachmentController::destroyAllByUserId($user->id);
         return Redirect::to('admin/user')->with('success_message', 'El registro ha sido borrado.')->withInput();
     }
 

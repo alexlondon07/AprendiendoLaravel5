@@ -30,6 +30,10 @@ Route::controllers([
         Route::resource('main', 'HomeController@main');
  });
 
+ Route::get('admin', function () {
+    return view('admin_template');
+});
+
 //Rutas permitidas SIN autenticacion
 //Route::get('attachment/get/view/{id}', array('uses' => 'AttachmentController@getAttachmentURL'));
 Route::get('attachment/get/{action}/{id}/{key}', array('uses' => 'AttachmentController@getAttachment'));
